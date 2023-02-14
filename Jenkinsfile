@@ -3,7 +3,7 @@ pipeline {
     stages{
         stage("build"){
             steps{
-                sh "docker build anujgarg01/node-api:$BUILD_NUMBER ."
+                sh "docker build -t anujgarg01/node-api:$BUILD_NUMBER ."
             }
         }
         stage("scan"){
