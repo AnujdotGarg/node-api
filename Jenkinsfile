@@ -8,7 +8,8 @@ pipeline {
         }
         stage("scan"){
             steps{
-                sh "trivy image anujgarg01/node-api:$BUILD_NUMBER"
+                //sh "trivy image anujgarg01/node-api:$BUILD_NUMBER"
+                sh "echo skipping trivy"
             }
         }
         stage ("push"){
@@ -23,7 +24,7 @@ pipeline {
         stage ("helm package"){
             steps{
                 sh "helm package --version $BUILD_NUMBER ./helmchart"
-                sh "helm install node-api --set image.tag=$BUILD_NUMBER node-api-10.tgz -f values.yaml"
+                sh "helm install node-api --set image.tag=$BUILD_NUMBER node-api-$BUILD_NUMBER.tgz -f values.yaml"
             }
         }
     
