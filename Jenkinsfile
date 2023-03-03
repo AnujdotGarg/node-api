@@ -25,6 +25,8 @@ pipeline {
             steps{
                 sh "helm package --version $BUILD_NUMBER ./helmchart"
                 sh "helm upgrade --install node-api --set image.tag=$BUILD_NUMBER node-api-$BUILD_NUMBER.tgz"
+                withCredentials([file(credentialsId: 'kube-config', variable: 'KUBECONFIG')]) {
+                    sh "helm upgrade --install node-api --set image.tag=$BUILD_NUMBER node-api-$BUILD_NUMBER.tgz"     
             }
         }
     
