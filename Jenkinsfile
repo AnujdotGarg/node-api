@@ -24,7 +24,7 @@ pipeline {
         stage ("helm package"){
             steps{
                 sh "helm package --version $BUILD_NUMBER ./helmchart"
-                sh "helm install node-api-$BUILD_NUMBER --set image.tag=$BUILD_NUMBER node-api-$BUILD_NUMBER.tgz"
+                sh "echo helm install node-api-$BUILD_NUMBER --set image.tag=$BUILD_NUMBER node-api-$BUILD_NUMBER.tgz"
             }
         }
     
